@@ -1,0 +1,13 @@
+{
+  "name": "magazine-service",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "java -jar magazine-service.jar",
+    "compile": "javac -d bin src/**/*.java",
+    "build": "jar cvf magazine-service.jar -C bin ."
+  },
+  "dependencies": {
+    "javafx-sdk": "^17.0.2"
+  }
+}

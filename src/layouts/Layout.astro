@@ -1,0 +1,143 @@
+---
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Belinda's Personal Blog" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Navigation client:load />
+		<main>
+			<slot />
+		</main>
+		<Footer client:load />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--text-color: #f8e3ff;
+		--bg-color: #1a1625;
+		--accent-color: #ff9ecd;
+		--secondary-bg: #2d2438;
+		--border-color: #463a5c;
+		--gradient-1: #ff9ecd;
+		--gradient-2: #b18cfe;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: var(--bg-color);
+		background-image: 
+			radial-gradient(circle at 100% 0%, rgba(255, 158, 205, 0.1) 0%, transparent 25%),
+			radial-gradient(circle at 0% 100%, rgba(177, 140, 254, 0.1) 0%, transparent 25%),
+			url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30c2-2 2-4 2-6s-2-4-4-4-4 2-4 4 2 4 4 4zm0 0c-2 2-4 2-6 2s-4-2-4-4 2-4 4-4 4 2 4 4zm0 0c2 2 4 2 6 2s4-2 4-4-2-4-4-4-4 2-4 4zm0 0c2-2 2-4 2-6s-2-4-4-4-4 2-4 4 2 4 4 4z' fill='rgba(255, 158, 205, 0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+		color: var(--text-color);
+	}
+	body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 1rem;
+		line-height: 1.6;
+	}
+	nav {
+		margin-bottom: 2rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid var(--border-color);
+		background: rgba(45, 36, 56, 0.7);
+		backdrop-filter: blur(8px);
+		border-radius: 12px;
+		padding: 1rem 2rem;
+	}
+	.nav-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.site-title {
+		font-size: 1.5rem;
+		font-weight: bold;
+		text-decoration: none;
+		background: linear-gradient(45deg, var(--gradient-1), var(--gradient-2));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 200% 200%;
+		animation: gradient 5s ease infinite;
+	}
+	.nav-links a {
+		margin-left: 1.5rem;
+		text-decoration: none;
+		color: var(--text-color);
+		position: relative;
+	}
+	.nav-links a::after {
+		content: '';
+		position: absolute;
+		width: 0;
+		height: 2px;
+		bottom: -4px;
+		left: 0;
+		background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+		transition: width 0.3s ease;
+	}
+	.nav-links a:hover::after {
+		width: 100%;
+	}
+	main {
+		min-height: calc(100vh - 180px);
+		background: rgba(45, 36, 56, 0.7);
+		backdrop-filter: blur(8px);
+		border-radius: 12px;
+		padding: 2rem;
+		border: 1px solid var(--border-color);
+	}
+	footer {
+		margin-top: 2rem;
+		padding: 1rem 2rem;
+		text-align: center;
+		font-size: 0.9rem;
+		color: #b18cfe;
+		border-top: 1px solid var(--border-color);
+		background: rgba(45, 36, 56, 0.7);
+		backdrop-filter: blur(8px);
+		border-radius: 12px;
+	}
+	h1 {
+		margin-bottom: 1.5rem;
+		background: linear-gradient(45deg, var(--gradient-1), var(--gradient-2));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		font-size: 2.5rem;
+	}
+	p {
+		margin-bottom: 1rem;
+	}
+	@keyframes gradient {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+</style>
